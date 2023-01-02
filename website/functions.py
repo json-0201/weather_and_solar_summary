@@ -26,7 +26,7 @@ def parse_url(city: str, country: str) -> str:
 def open_weather_api(city: str) -> dict:
     """Returns data via API call for Open Weather"""
 
-    API_KEY = "337b00a1e423612843a73ec31e09053b"
+    API_KEY = "OPEN WEATHER API"
     BASE_URL = "http://api.openweathermap.org/data/2.5/weather?"
     COMPLETE_URL = BASE_URL + "appid=" + API_KEY + "&q=" + city
     response = requests.get(COMPLETE_URL)
@@ -106,7 +106,7 @@ def get_location(city: str) -> tuple:
     longitude = open_weather_api(city)["coord"]["lon"]
 
     # Google - Elevation API
-    API_KEY = "AIzaSyAMmlL1Eo8HVEHJVxF9xsDZZx5JukK4glY"
+    API_KEY = "Google Elevation API"
     BASE_URL = "https://maps.googleapis.com/maps/api/elevation/json"
     COMPLETE_URL = BASE_URL + "?locations=" + str(latitude) + "%2C" + str(longitude) + "&key=" + API_KEY
     response = requests.get(COMPLETE_URL).json()
