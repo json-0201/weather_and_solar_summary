@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Weather & Solar Production
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="container rounded-4 text-center" style="background-color: #07da63;">
+        <h2>Weather Summary</h2>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="container rounded-4 text-center mt-2" style="background-color: #b99aff;">
+                <div class="border border-2 border-warning rounded-2">
+                {{ line }}<br>
+                LOCATION: {{ location.city }}, {{ location.country }}<br>
+                {{ line }}<br>
+                LONGITUDE: {{ location.longitude }}(E) || LATITUDE: {{ location.latitude }}(N)<br>
+                {{ line }}
+                </div>
+                <div class="border border-2 border-warning rounded-2">
+                {{ line }}<br>
+                CURRENT DATE: {{ datetime.current_date }}<br>
+                {{ line }}<br>
+                CURRENT TIME: {{ datetime.current_time }}<br>
+                {{ line }}<br>
+                SUNRISE TIME: {{ datetime.sunrise_time }} || SUNSET TIME: {{ datetime.sunset_time }}<br>
+                {{ line }}
+                </div>
+                <div class="border border-2 border-warning rounded-2">
+                {{ line }}<br>
+                WEATHER DESCRIPTION: {{ weather.description.title() }}<br>
+                {{ line }}<br>
+                CURRENT TEMPERATURE: {{ weather.temperature.current_celsius }} °C || {{ weather.temperature.current_fahrenheit }} °F<br>
+                CURRENT TEMPERATURE FEELS LIKE: {{ weather.temperature.current_feels_like_celsius }} °C || {{ weather.temperature.current_feels_like_fahrenheit }} °F<br>
+                MINIMUM TEMPERATURE: {{ weather.temperature.minimum_celsius }} °C || {{ weather.temperature.minimum_fahrenheit }} °F<br>
+                MAXIMUM TEMPERATURE: {{ weather.temperature.maximum_celsius }} °C || {{ weather.temperature.maximum_fahrenheit }} °F<br>
+                {{ line }}<br>
+                HUMIDITY: {{ weather.humidity }} %<br>
+                {{ line }}<br>
+                WIND SPEED: {{ weather.wind_speed }} m/s<br>
+                {{ line }}
+                </div>
+            </div>
+            <div class="container rounded-4 text-center mt-4" style="background-color: #3fb24d;">
+            <a href={{ link_image }} target="_blank" style="text-decoration: none;"><h4>Images of {{ location.city }}-{{ location.country }}</h4></a>
+            <a href={{ link_youtube }} target="_blank" style="text-decoration: none;"><h4>Videos of {{ location.city }}-{{ location.country }}</h4></a>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="container rounded-4 text-center mt-2" style="background-color: #fb3b1e;">
+                <div class="border border-2 border-warning rounded-2">
+<pre>
+<span style="font-size: larger;">SYSTEM:</span> {
+SOLAR PANEL: {{ system.module }},
+INVERTER: {{ system.inverter }},
+SURFACE TILT: {{ system.surface_tilt }}°,
+SURFACE AZIMUTH: {{ system.surface_azimuth }}°,
+NUMBER OF PANELS+INVERTERS: {{ system.multiplier }}
+}</pre> 
+                </div>
+                <div class="border border-2 border-warning rounded-2">
+                    <table class="table table-striped table-dark" style="table-layout: fixed; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Jan</th>
+                                <th>Feb</th>
+                                <th>Mar</th>
+                                <th>Apr</th>
+                                <th>May</th>
+                                <th>Jun</th>
+                                <th>Jul</th>
+                                <th>Aug</th>
+                                <th>Sep</th>
+                                <th>Oct</th>
+                                <th>Nov</th>
+                                <th>Dec</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="font-size: smaller;">
+                                <td>{{ monthly_production["1"] }}</td>
+                                <td>{{ monthly_production["2"] }}</td>
+                                <td>{{ monthly_production["3"] }}</td>
+                                <td>{{ monthly_production["4"] }}</td>
+                                <td>{{ monthly_production["5"] }}</td>
+                                <td>{{ monthly_production["6"] }}</td>
+                                <td>{{ monthly_production["7"] }}</td>
+                                <td>{{ monthly_production["8"] }}</td>
+                                <td>{{ monthly_production["9"] }}</td>
+                                <td>{{ monthly_production["10"] }}</td>
+                                <td>{{ monthly_production["11"] }}</td>
+                                <td>{{ monthly_production["12"] }}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="12" align="center">TOTAL: {{ total_production }} Whr</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="border border-2 border-warning rounded-2">
+                    <img id="plot" src="data:image/jpeg;base64,{{ plot }}" style="max-width: 100%; height:100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container rounded-4 text-center mt-2" style="background-color: #5bc0de;">
+        <a href="/"><h4>Return</h4></a>
+        <p style="font-size: 18px; font-style: italic;">by json-0201</p>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+body {
+    background-color: #d8e3e3;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.block {
+    display: flex; justify-content: center; align-items: center;
+}
