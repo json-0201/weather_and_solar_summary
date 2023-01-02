@@ -3,3 +3,15 @@ secrets
 requests
 json
 datetime
+numpy
+pandas
+requests
+datetime
+pvlib
+timezonefinder
+typing
+matplotlib
+os
+base64
+io
+PIL
